@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For YASHU ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#f6e6d9,#f4c2c2,#e6a4b4);
+  color:#5a2a2a;
+  height:100vh;
+  overflow:hidden;
+}
+
+/* -------- SNOW -------- */
+.snowflake{
+  position:fixed;
+  top:-10px;
+  color:white;
+  opacity:.8;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
+
+/* -------- PAGES -------- */
+.page{
+  display:none;
+  height:100vh;
+  width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+.page.active{display:flex;}
+
+/* -------- TEXT -------- */
+.title{
+  font-family:cursive;
+  font-size:2.6rem;
+  margin-bottom:18px;
+}
+.sub{opacity:.85;}
+
+/* -------- GIFT -------- */
+.gift{
+  font-size:80px;
+  animation:bounce 1.5s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+}
+
+/* -------- SNOWMAN -------- */
+.snowman{
+  font-size:90px;
+  animation:sway 2s infinite;
+}
+@keyframes sway{
+  0%{transform:rotate(-5deg);}
+  50%{transform:rotate(5deg);}
+  100%{transform:rotate(-5deg);}
+}
+
+/* -------- BUTTON -------- */
+.btn{
+  margin-top:25px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#e07a8a;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* -------- FLIP CARDS -------- */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  margin-top:35px;
+}
+.card{width:60px;height:80px;perspective:600px;}
+.card-inner{
+  width:100%;height:100%;
+  transition:.6s;
+  transform-style:preserve-3d;
+}
+.card.flipped .card-inner{
+  transform:rotateY(180deg);
+}
+.card-face{
+  position:absolute;width:100%;height:100%;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  backface-visibility:hidden;
+}
+.card-front{background:#ffffffaa;}
+.card-back{
+  background:#e07a8a;color:white;
+  transform:rotateY(180deg);
+}
+
+/* -------- YASHU HEARTBEAT -------- */
+.name{
+  font-family:cursive;
+  font-size:2.1rem;
+  color:#e75480;
+  text-shadow:
+    0 0 6px #ffd1dc,
+    0 0 14px #ffb6c1,
+    0 0 28px #f4a6b8;
+  animation:heartbeat 1.6s infinite;
+}
+@keyframes heartbeat{
+  0%{transform:scale(1);}
+  14%{transform:scale(1.15);}
+  28%{transform:scale(1);}
+  42%{transform:scale(1.15);}
+  70%{transform:scale(1);}
+}
+
+/* -------- CONFESSION -------- */
+.confess-box{
+  background:#ffffffcc;
+  backdrop-filter:blur(6px);
+  padding:30px;
+  border-radius:20px;
+  max-width:420px;
+  opacity:0;
+  transition:opacity 2s;
+}
+.confess-box.show{opacity:1;}
+
+.confess-text{
+  font-family:cursive;
+  font-size:1.8rem;
+  line-height:1.5;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎶 MUSIC (replace src if you want) -->
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1" onclick="go(2)">
+  <div class="title">for someone special</div>
+  <div class="gift">🎁</div>
+  <div class="sub">Tap me</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <div class="snowman">⛄</div>
+  <div class="sub" style="margin-top:15px;">
+    this christmas something special for you:
+  </div>
+  <button class="btn" onclick="go(3)">Open it</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <div class="title">just for you</div>
+  <div class="sub">i dont want any gift</div>
+
+  <div class="cards">
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-face card-front">1</div>
+        <div class="card-face card-back">you</div>
+      </div>
+    </div>
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-face card-front">2</div>
+        <div class="card-face card-back">are</div>
+      </div>
+    </div>
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-face card-front">3</div>
+        <div class="card-face card-back">my</div>
+      </div>
+    </div>
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-face card-front">4</div>
+        <div class="card-face card-back">cutest</div>
+      </div>
+    </div>
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-face card-front">5</div>
+        <div class="card-face card-back">gift</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn" style="margin-top:35px" onclick="go(4)">Next 💕</button>
+</div>
+
+<!-- PAGE 4 : CONFESSION -->
+<div class="page" id="p4">
+  <div class="title">one last thing…</div>
+  <button class="btn" onclick="reveal()">Tap to reveal my wish</button>
+
+  <div class="confess-box" id="confess">
+    <div class="confess-text">
+      this christmas,<br>
+      <span class="name">YASHU</span>,<br><br>
+
+      i don’t wish for anything else.<br><br>
+
+      i just want you to know<br>
+      how deeply important you are to me.<br><br>
+
+      even from miles away,<br>
+      you are my warmth,<br>
+      my smile,<br>
+      and my safest feeling.<br><br>
+
+      <span class="name">YASHU</span>,<br>
+      you are my forever gift ❤️
+    </div>
+  </div>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+function flip(card){
+  card.classList.toggle('flipped');
+}
+function reveal(){
+  document.getElementById('confess').classList.add('show');
+}
+
+/* SNOW */
+setInterval(()=>{
+  const s=document.createElement('div');
+  s.className='snowflake';
+  s.innerHTML='❄';
+  s.style.left=Math.random()*100+'vw';
+  s.style.fontSize=10+Math.random()*20+'px';
+  s.style.animationDuration=3+Math.random()*5+'s';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+},200);
+</script>
+
+</body>
+</html>
